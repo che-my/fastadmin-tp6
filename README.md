@@ -2,11 +2,9 @@ ThinkPHP 6.0
 ===============
 
 > 运行环境要求PHP7.1+。
-
 ~~~
 克隆本仓库代码 git clone https://github.com/che-my/fastadmin-tp6.git
 ~~~
-
 ~~~
 安装依赖 composer install
 tp6推荐使用环境变量env
@@ -16,6 +14,9 @@ cp .example.env .env
 APP_DEBUG = true
 APP_TRACE = true
 ~~~
+
+[在线体验](http://fatp6.cbjwww.cn)
+
 > fastadmin升级tp6，有以下BUG 暂待解决
 >1.插件模块暂时使用不了
 >2.在线命令管理模块，默认自定义控制器名称和自定义模型 这2个地方留空是正常的，能生成代码，但是有可能还是会有部分bug存在，建议还是自己手动写写代码也好
