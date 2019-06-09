@@ -1,18 +1,19 @@
 {
-    "name": "topthink/think",
-    "description": "the new thinkphp framework",
+    "name": "che-my/fastadmin-tp6",
+    "description": "fastadmin升级thinkphp6.0",
     "type": "project",
     "keywords": [
+        "fastadmin",
         "framework",
         "thinkphp",
         "ORM"
     ],
-    "homepage": "http://thinkphp.cn/",
+    "homepage": "https://www.cbjwww.cn",
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "liu21st",
-            "email": "liu21st@gmail.com"
+            "name": "che-my",
+            "email": "1396506799@qq.com"
         }
     ],
     "require": {
