@@ -3,17 +3,19 @@ ThinkPHP 6.0
 
 > 运行环境要求PHP7.1+。
 
+~~~
 克隆本仓库代码 git clone https://github.com/che-my/fastadmin-tp6.git
+~~~
 
 ~~~
 安装依赖 composer install
-~~~
 tp6推荐使用环境变量env
 cp .example.env .env
 
 调试模式 
 APP_DEBUG = true
 APP_TRACE = true
+~~~
 
 ## tp6文档
 
