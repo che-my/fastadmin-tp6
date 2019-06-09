@@ -8,8 +8,14 @@ ThinkPHP 6.0
 ~~~
 安装依赖 composer install
 ~~~
+tp6推荐使用环境变量env
+cp .example.env .env
 
-## 文档
+调试模式 
+APP_DEBUG = true
+APP_TRACE = true
+
+## tp6文档
 
 [完全开发手册](https://www.kancloud.cn/manual/thinkphp6_0/content)
 
