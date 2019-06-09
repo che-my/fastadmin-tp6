@@ -62,8 +62,8 @@ $dbConfigFile = ROOT_PATH . 'config/database.php';
 $lockFile = INSTALL_PATH . 'install.lock';
 if (is_file($lockFile)) {
     $errInfo = "当前已经安装{$sitename}，如果需要重新安装，请手动移除app/admin/command/Install/install.lock文件";
-} else if (version_compare(PHP_VERSION, '5.5.0', '<')) {
-    $errInfo = "当前版本(" . PHP_VERSION . ")过低，请使用PHP5.5以上版本";
+} else if (version_compare(PHP_VERSION, '7.1.0', '<')) {
+    $errInfo = "当前版本(" . PHP_VERSION . ")过低，请使用PHP7.1以上版本";
 } else if (!extension_loaded("PDO")) {
     $errInfo = "当前未开启PDO，无法进行安装";
 } else if (!is_really_writable($dbConfigFile)) {
@@ -75,7 +75,7 @@ if (is_file($lockFile)) {
         }
     }
     if (!$errInfo) {
-        $errInfo = '当前权限不足，无法写入配置文件app/database.php<br><a href="https://forum.fastadmin.net/thread/1145?ref=install" target="_blank">点击查看解决办法</a>';
+        $errInfo = '当前权限不足，无法写入配置文件config/database.php<br><a href="https://forum.fastadmin.net/thread/1145?ref=install" target="_blank">点击查看解决办法</a>';
     }
 } else {
     $dirArr = [];

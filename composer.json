@@ -21,8 +21,7 @@
         "topthink/think-view": "^1.0",
         "symfony/var-dumper":"^4.2",
         "topthink/think-captcha": "^3.0",
-        "overtrue/pinyin": "^4.0",
-        "overtrue/wechat": "~4.0"
+        "overtrue/pinyin": "^4.0"
     },
     "autoload": {
         "psr-4": {
