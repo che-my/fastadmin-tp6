@@ -35,9 +35,10 @@ tp6路由
 
 [完全开发手册](https://www.kancloud.cn/manual/thinkphp6_0/content)
 
-## 参与开发
+## fastadmin文档
 
-请参阅 [ThinkPHP 核心框架包](https://github.com/top-think/framework)。
+[fastadmin开发文档](https://www.kancloud.cn/manual/thinkphp6_0/content)
+
 
 ## 版权信息
 

@@ -3,7 +3,7 @@
  * @Author: che-my
  * @Date:   2019-06-09 01:39:44
  * @Last Modified by:   che-my
- * @Last Modified time: 2019-06-09 02:25:45
+ * @Last Modified time: 2019-06-10 13:45:55
  */
 namespace app\common\middleware;
 
@@ -19,6 +19,11 @@ class FormValidate
     	$response = $next($request);
         //获取当前参数
         $params = $request->param();
+        if(count($params)){
+            foreach ($params as $key => $value) {
+                $params[$key] = htmlspecialchars_decode(trim($value));
+            } 
+        }
         //获取当前应用
         $module = $request->app();
         //获取访问控制器
