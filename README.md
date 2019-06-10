@@ -12,7 +12,8 @@ cp .example.env .env
 
 调试模式 
 APP_DEBUG = true
-APP_TRACE = true
+
+trace调试模式，tp6已结做成全局中间件服务，需要在app\middleware.php文件里吧注释trace的服务那里取消注释就行
 ~~~
 
 [在线体验](http://fatp6.cbjwww.cn)

@@ -8,7 +8,7 @@ return [
     // Session初始化
     'think\middleware\SessionInit',
     // 页面Trace调试
-    'think\middleware\TraceDebug',
+    // 'think\middleware\TraceDebug',
     //模块中间件
     'app\common\middleware\ModuleInit',
     //表单验证中间件
