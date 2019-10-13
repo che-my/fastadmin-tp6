@@ -1,6 +1,6 @@
+app/admin/command/Install/install.lock
 /.idea
 /.vscode
 /vendor
 *.log
 .env
-app/admin/command/Install/install.lock
