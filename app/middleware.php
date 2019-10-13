@@ -14,3 +14,4 @@ return [
     //表单验证中间件
     'app\common\middleware\FormValidate',
 ];
+

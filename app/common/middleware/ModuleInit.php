@@ -4,7 +4,7 @@
  * @Author: che-my
  * @Date:   2019-06-09 01:39:44
  * @Last Modified by:   che-my
- * @Last Modified time: 2019-06-09 01:41:36
+ * @Last Modified time: 2019-10-13 20:15:09
  */
 namespace app\common\middleware;
 
@@ -21,26 +21,26 @@ class ModuleInit
         // 如果修改了index.php入口地址，则需要手动修改cdnurl的值
         $url = preg_replace("/\/(\w+)\.php$/i", '', '');
 
-        $template = array();
+        $view = array();
 
         // 如果未设置__CDN__则自动匹配得出
-        $templateConfig = Config::get('template.tpl_replace_string');
+        $templateConfig = Config::get('view.tpl_replace_string');
 
         if (!$templateConfig['__CDN__']) {
-        	$template['tpl_replace_string']['__CDN__'] = $url;
+        	$view['tpl_replace_string']['__CDN__'] = $url;
         }
 
         // 如果未设置__PUBLIC__则自动匹配得出
         if (!$templateConfig['__PUBLIC__']) {
-        	$template['tpl_replace_string']['__PUBLIC__'] = $url. '/';
+        	$view['tpl_replace_string']['__PUBLIC__'] = $url. '/';
         }
         // 如果未设置__ROOT__则自动匹配得出
         if (!$templateConfig['__ROOT__']) {
-            $template['tpl_replace_string']['__ROOT__'] = preg_replace("/\/public\/$/", '', $url . '/');
+            $view['tpl_replace_string']['__ROOT__'] = preg_replace("/\/public\/$/", '', $url . '/');
         }
         
-        if(count($template)){
-        	Config::set($template,'template');
+        if(count($view)){
+        	Config::set($view,'view');
         }
         // 如果未设置cdnurl则自动匹配得出
         if (!Config::get('site.cdnurl')) {
@@ -62,7 +62,7 @@ class ModuleInit
         }
 
         // 切换多语言
-        if (Config::get('lang.switch_on') && $request->get('lang')) {
+        if (Config::get('lang.switch_group') && $request->get('lang')) {
             Cookie::set('think_var', $request->get('lang'));
         }
 

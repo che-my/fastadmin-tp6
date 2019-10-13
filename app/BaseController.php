@@ -86,7 +86,7 @@ abstract class BaseController
         $this->app     = $app;
         $this->request = $this->app->request;
         $this->view     = $view;
-        $this->modulename = strtolower($this->request->app());
+        $this->modulename = strtolower(app('http')->getName());
         $this->controllername = strtolower($this->request->controller());
         $this->actionname = strtolower($this->request->action());
         // 控制器初始化
@@ -98,11 +98,12 @@ abstract class BaseController
     {
         // 如果有使用模板布局
         if ($this->layout) {
-            $this->view->engine->config(['layout_on'=>true,'layout_name'=>$this->layout]);
+            $this->view->engine()->config(['layout_on'=>true,'layout_name'=>$this->layout]);
         } else {
-            $this->view->engine->layout(false);
+            $this->view->engine()->layout(false);
         }
     }
+    
 
     /**
      * 加载语言文件
@@ -111,7 +112,7 @@ abstract class BaseController
     protected function loadlang($name)
     {
         $langset = cookie('think_var')?cookie('think_var'):Lang::getLangSet();
-        Lang::load(APP_PATH . $this->request->app() . '/lang/' . $langset . '/' . str_replace('.', '/', $name) . '.php');
+        Lang::load(APP_PATH . $this->modulename . '/lang/' . $langset . '/' . str_replace('.', '/', $name) . '.php');
     }
 
     /**
@@ -136,36 +137,26 @@ abstract class BaseController
      */
     protected function validate(array $data, $validate, array $message = [], bool $batch = false)
     {
-        try {
-            if (is_array($validate)) {
-                $v = new Validate();
-                $v->rule($validate);
-            } else {
-                if (strpos($validate, '.')) {
-                    // 支持场景
-                    list($validate, $scene) = explode('.', $validate);
-                }
-                $class = false !== strpos($validate, '\\') ? $validate : $this->app->parseClass('validate', $validate);
-                $v     = new $class();
-                if (!empty($scene)) {
-                    $v->scene($scene);
-                }
+        if (is_array($validate)) {
+            $v = new Validate();
+            $v->rule($validate);
+        } else {
+            if (strpos($validate, '.')) {
+                // 支持场景
+                list($validate, $scene) = explode('.', $validate);
             }
-
-            // 是否批量验证
-            if ($batch || $this->batchValidate) {
-                $v->batch(true);
+            $class = false !== strpos($validate, '\\') ? $validate : $this->app->parseClass('validate', $validate);
+            $v     = new $class();
+            if (!empty($scene)) {
+                $v->scene($scene);
             }
-            $result = $v->failException(true)->check($data);
-        } catch (\think\exception\ValidateException $e) {
-            $error = $e->getError();
-            foreach ($message as $key => $value) {
-                $error = str_replace($key,$message[$key],$error);
-            }
-            // 验证失败 输出错误信息
-            $this->error($error);
         }
-        return true;
+        $v->message($message);
+        // 是否批量验证
+        if ($batch || $this->batchValidate) {
+            $v->batch(true);
+        }
+        return $v->failException(true)->check($data);
     }
 
 
@@ -269,22 +260,14 @@ abstract class BaseController
      * URL重定向
      * @access protected
      * @param  string         $url 跳转的URL表达式
-     * @param  array|integer  $params 其它URL参数
      * @param  integer        $code http code
      * @param  array          $with 隐式传参
      * @return void
      */
-    protected function redirect($url, $params = [], $code = 302, $with = [])
+    protected function redirect($url, $code = 302, $with = [])
     {
-        $response = Response::create($url, 'redirect');
-
-        if (is_integer($params)) {
-            $code   = $params;
-            $params = [];
-        }
-
-        $response->code($code)->params($params)->with($with);
-
+        $response = Response::create($url, 'redirect',$code);
+        $response->with($with);
         throw new HttpResponseException($response);
     }
 

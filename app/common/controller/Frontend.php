@@ -89,7 +89,7 @@ class Frontend extends BaseController
             'language'       => strip_tags($langset)
         ];
 
-        $config = array_merge($config, Config::get("template.tpl_replace_string"));
+        $config = array_merge($config, Config::get("view.tpl_replace_string"));
 
         Config::set(['upload' => array_merge(Config::get('upload'), $upload)]);
 

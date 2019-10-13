@@ -22,7 +22,8 @@
         "topthink/think-view": "^1.0",
         "symfony/var-dumper":"^4.2",
         "topthink/think-captcha": "^3.0",
-        "overtrue/pinyin": "^4.0"
+        "overtrue/pinyin": "^4.0",
+        "topthink/think-multi-app": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -45,7 +46,8 @@
     "extra": {
         "think": {
             "services": [
-                "think\\captcha\\CaptchaService"
+                "think\\captcha\\CaptchaService",
+                "think\\app\\Service"
             ]
         }
     }

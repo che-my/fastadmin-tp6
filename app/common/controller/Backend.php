@@ -132,7 +132,7 @@ class Backend extends BaseController
                 $url = Session::get('referer');
                 $url = $url ? $url : $this->request->url();
                 if ($url == '/') {
-                    $this->redirect('index/login', [], 302, ['referer' => $url]);
+                    $this->redirect('index/login', 302, ['referer' => $url]);
                     exit;
                 }
                 $this->error(__('Please login first'), url('index/login', ['url' => $url]));
@@ -158,7 +158,7 @@ class Backend extends BaseController
                 }
                 $url = url($url, '', false);
             }
-            $this->redirect('index/index', [], 302, ['referer' => $url]);
+            $this->redirect('index/index', 302, ['referer' => $url]);
         }
 
         // 设置面包屑导航数据
@@ -187,7 +187,7 @@ class Backend extends BaseController
             'fastadmin'      => Config::get('fastadmin'),
             'referer'        => Session::get("referer")
         ];
-        $config = array_merge($config, Config::get("template.tpl_replace_string"));
+        $config = array_merge($config, Config::get("view.tpl_replace_string"));
 
         Config::set(['upload'=>array_merge(Config::get('upload'), $upload)],'config');
 

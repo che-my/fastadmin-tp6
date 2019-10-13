@@ -27,7 +27,7 @@ if (!is_file(APP_PATH . 'admin'.DS.'command'.DS.'Install'.DS.'install.lock'))
 require __DIR__ . '/../vendor/autoload.php';
 
 // 执行HTTP应用并响应
-$http = (new  App())->make('http');
+$http = (new  App())->http;
 
 $response = $http->run();
 

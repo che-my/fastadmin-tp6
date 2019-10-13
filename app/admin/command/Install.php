@@ -17,7 +17,7 @@ class Install extends Command
 
     protected function configure()
     {
-        $config = Config::get('database');
+        $config = Config::get('database.connections.mysql');
         $this
             ->setName('install')
             ->addOption('hostname', 'a', Option::VALUE_OPTIONAL, 'mysql hostname', $config['hostname'])

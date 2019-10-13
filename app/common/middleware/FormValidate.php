@@ -3,7 +3,7 @@
  * @Author: che-my
  * @Date:   2019-06-09 01:39:44
  * @Last Modified by:   che-my
- * @Last Modified time: 2019-06-10 13:45:55
+ * @Last Modified time: 2019-10-13 15:28:01
  */
 namespace app\common\middleware;
 
@@ -25,7 +25,7 @@ class FormValidate
             } 
         }
         //获取当前应用
-        $module = $request->app();
+        $module = app('http')->getName();
         //获取访问控制器
         $controller = strtolower($request->controller());
         if(strpos($controller,'.')!== false){
